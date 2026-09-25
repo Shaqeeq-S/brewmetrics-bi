@@ -1,4 +1,4 @@
-table brewmetrics_sales
+table Source_Sales
 	lineageTag: a21006b9-25ac-4ecf-a28c-5464546fb84b
 
 	column sale_id
@@ -86,7 +86,7 @@ table brewmetrics_sales
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition brewmetrics_sales = m
+	partition Source_Sales = m
 		mode: import
 		source =
 				let
@@ -95,6 +95,8 @@ table brewmetrics_sales
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"sale_id", Int64.Type}, {"date", type date}, {"city", type text}, {"store_format", type text}, {"category", type text}, {"item", type text}, {"quantity", Int64.Type}, {"unit_price", Int64.Type}, {"sales_amount", type number}})
 				in
 				    #"Changed Type"
+
+	changedProperty = Name
 
 	annotation PBI_ResultType = Table
 

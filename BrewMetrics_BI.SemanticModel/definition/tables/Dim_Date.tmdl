@@ -1,0 +1,79 @@
+table Dim_Date
+	lineageTag: ae24b102-2818-4fc0-bce6-04855e6a7dee
+
+	column Date
+		formatString: General Date
+		lineageTag: fee63477-db41-429f-ae64-1d343b50920a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 96953e27-08ad-4858-9d00-fcbee725103d
+			defaultHierarchy: LocalDateTable_63e264b3-ed0c-4b7f-aade-c460fc9f4422.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: e67f24dd-2014-4900-9b34-e7d32ca845d3
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		lineageTag: 69a05576-808e-4947-9a5f-ea08a6dfd5e3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+		sortByColumn: 'Month Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: 6d77de78-c1cb-42ff-b152-9da533e785a6
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: 7a305bc6-71d7-4a0b-9fe0-a2e35814974f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		formatString: 0
+		lineageTag: bdf98681-572e-4fb5-be04-e59ce295814b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Day]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Date = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    CALENDAR(
+				        MIN(Fact_Sales[Date]),
+				        MAX(Fact_Sales[Date])
+				    ),
+				    "Year", YEAR([Date]),
+				    "Month", FORMAT([Date], "MMM"),
+				    "Month Number", MONTH([Date]),
+				    "Quarter", "Q" & FORMAT([Date], "Q"),
+				    "Day", DAY([Date])
+				)
+
+	annotation PBI_Id = 4d55e99030b744b9813c7cf72083219a
+

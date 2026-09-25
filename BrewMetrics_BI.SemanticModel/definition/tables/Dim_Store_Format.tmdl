@@ -1,0 +1,25 @@
+table Dim_Store_Format
+	lineageTag: 810143a1-49fc-4454-8566-0eccab583bd6
+
+	column store_format
+		dataType: string
+		lineageTag: 7dc87c9e-7ad5-4502-bc37-37a7757ae124
+		summarizeBy: none
+		sourceColumn: store_format
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Store_Format = m
+		mode: import
+		source =
+				let
+				    Source = Source_Sales,
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"sale_id", "date", "city", "category", "item", "quantity", "unit_price", "sales_amount"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

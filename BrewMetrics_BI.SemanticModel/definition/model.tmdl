@@ -8,13 +8,19 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["brewmetrics_sales"]
+annotation PBI_QueryOrder = ["Source_Sales","Fact_Sales","Dim_Product","Dim_City","Dim_Store_Format"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
-ref table brewmetrics_sales
+ref table Source_Sales
 ref table DateTableTemplate_5d9e7a34-79fc-4894-8268-87958d090b95
 ref table LocalDateTable_ff7e4424-fef1-42b1-84ce-3da6cbd66ed1
+ref table Fact_Sales
+ref table Dim_Product
+ref table Dim_City
+ref table Dim_Store_Format
+ref table Dim_Date
+ref table LocalDateTable_63e264b3-ed0c-4b7f-aade-c460fc9f4422
 
 ref cultureInfo en-US
 
