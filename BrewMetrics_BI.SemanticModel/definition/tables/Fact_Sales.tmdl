@@ -1,6 +1,19 @@
 table Fact_Sales
 	lineageTag: 90c031f3-cd1c-46cd-964a-4b526ea8714b
 
+	measure 'Total Sales' =
+			
+			SUM(Fact_Sales[sales_amount])
+		lineageTag: 5eca5455-a3bd-4a53-9a82-95f5bbdc96c8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Quantity' =
+			
+			SUM(Fact_Sales[quantity])
+		formatString: 0
+		lineageTag: 392a8381-52a9-4e4b-b80d-c781b6fcc899
+
 	column date
 		dataType: dateTime
 		formatString: Long Date
