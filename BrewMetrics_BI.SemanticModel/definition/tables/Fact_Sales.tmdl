@@ -48,6 +48,18 @@ table Fact_Sales
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Item Sales Rank' =
+			
+			RANKX(
+			    ALLSELECTED(Dim_Product[item]),
+			    [Total Sales],
+			    ,
+			    DESC,
+			    DENSE
+			)
+		formatString: 0
+		lineageTag: 69ac8c28-b98a-493d-8fd9-449dbda4ea8d
+
 	column date
 		dataType: dateTime
 		formatString: Long Date
