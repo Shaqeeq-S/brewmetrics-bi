@@ -4,9 +4,10 @@ table Fact_Sales
 	measure 'Total Sales' =
 			
 			SUM(Fact_Sales[sales_amount])
+		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
 		lineageTag: 5eca5455-a3bd-4a53-9a82-95f5bbdc96c8
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
 
 	measure 'Total Quantity' =
 			
@@ -68,6 +69,53 @@ table Fact_Sales
 			    0
 			)
 		lineageTag: 52a8f786-bb14-46df-ac06-06b2bf17a71e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Transactions' =
+			
+			COUNTROWS(Fact_Sales)
+		formatString: 0
+		lineageTag: 9b940aca-4bd2-487e-a3c6-0837da7f6884
+
+	measure 'Distinct Items' =
+			
+			DISTINCTCOUNT(Fact_Sales[item])
+		formatString: 0
+		lineageTag: 5b78225e-da83-46bf-b9ab-14205cb5d371
+
+	measure 'YoY Growth %' =
+			
+			VAR CurrentSales =
+			    [Total Sales]
+			
+			VAR PreviousYearSales =
+			    CALCULATE(
+			        [Total Sales],
+			        DATEADD(Dim_Date[Date], -1, YEAR)
+			    )
+			
+			RETURN
+			    DIVIDE(
+			        CurrentSales - PreviousYearSales,
+			        PreviousYearSales,
+			        0
+			    )
+		lineageTag: 73dda44b-6809-4d57-8f8d-9102ff30f32d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Category Sales %' =
+			
+			DIVIDE(
+			    [Total Sales],
+			    CALCULATE(
+			        [Total Sales],
+			        ALLSELECTED(Dim_Product[category])
+			    ),
+			    0
+			)
+		lineageTag: a324206d-48a5-4ae8-ac8a-dfa29d67fd81
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 

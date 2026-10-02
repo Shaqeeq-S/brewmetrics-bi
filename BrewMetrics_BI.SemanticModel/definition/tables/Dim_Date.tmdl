@@ -59,6 +59,23 @@ table Dim_Date
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Day Name' =
+			
+			FORMAT(Dim_Date[Date], "ddd")
+		lineageTag: fc9048c0-9d01-486b-af10-81cfbe630e6e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Number' =
+			
+			WEEKDAY(Dim_Date[Date], 2)
+		formatString: 0
+		lineageTag: 7be8c31e-2ac0-440b-a08c-5d4d5a605bbe
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Dim_Date = calculated
 		mode: import
 		source =
