@@ -4,10 +4,10 @@ table Fact_Sales
 	measure 'Total Sales' =
 			
 			SUM(Fact_Sales[sales_amount])
-		formatString: "₹"#,0.00;#,0.00\ -"₹";"₹"#,0.00
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
 		lineageTag: 5eca5455-a3bd-4a53-9a82-95f5bbdc96c8
 
-		annotation PBI_FormatHint = {"currencyCulture":"hi-IN"}
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	measure 'Total Quantity' =
 			
@@ -32,9 +32,8 @@ table Fact_Sales
 			        PreviousMonthSales,
 			        0
 			    )
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: ac2b5679-9af4-4966-9567-8572f854852c
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Running Total Sales' =
 			
@@ -68,9 +67,10 @@ table Fact_Sales
 			    [Total Quantity],
 			    0
 			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
 		lineageTag: 52a8f786-bb14-46df-ac06-06b2bf17a71e
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	measure 'Total Transactions' =
 			

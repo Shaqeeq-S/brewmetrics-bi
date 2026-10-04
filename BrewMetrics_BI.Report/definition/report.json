@@ -53,17 +53,6 @@
           "type": "BaseTheme"
         }
       ]
-    },
-    {
-      "name": "RegisteredResources",
-      "type": "RegisteredResources",
-      "items": [
-        {
-          "name": "Warm_Coffee_Bean_Caf__Backgrou4629862038357906.png",
-          "path": "Warm_Coffee_Bean_Caf__Backgrou4629862038357906.png",
-          "type": "Image"
-        }
-      ]
     }
   ],
   "settings": {

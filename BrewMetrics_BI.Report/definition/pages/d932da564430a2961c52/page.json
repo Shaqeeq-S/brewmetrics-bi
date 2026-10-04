@@ -13,8 +13,9 @@
             "solid": {
               "color": {
                 "expr": {
-                  "Literal": {
-                    "Value": "'#F7F1E8'"
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
                   }
                 }
               }
@@ -25,23 +26,14 @@
               "name": {
                 "expr": {
                   "Literal": {
-                    "Value": "'Warm Coffee Bean Café Background.png'"
+                    "Value": "''"
                   }
                 }
               },
               "url": {
                 "expr": {
-                  "ResourcePackageItem": {
-                    "PackageName": "RegisteredResources",
-                    "PackageType": 1,
-                    "ItemName": "Warm_Coffee_Bean_Caf__Backgrou4629862038357906.png"
-                  }
-                }
-              },
-              "scaling": {
-                "expr": {
                   "Literal": {
-                    "Value": "'Fill'"
+                    "Value": "''"
                   }
                 }
               }
